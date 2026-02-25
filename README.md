@@ -13,7 +13,6 @@
 - [Project Structure](#-project-structure)
 - [Dashboard Views](#-dashboard-views)
 - [Business Impact](#-business-impact)
-- [Research Questions](#-research-questions)
 - [Key Insights](#-key-insights)
 - [How to Run This Project](#-how-to-run-this-project)
 - [Final Recommendations](#-final-recommendations)
@@ -80,7 +79,7 @@ Key KPIs engineered using DAX:
 - **Power BI** (Data Modeling, UI/UX Design & Visualization)
 - **DAX** (Complex KPI Calculations, Time Intelligence, Dynamic Measures)
 - **Power Query** (Data Cleaning & Transformation)
-- **Figma / PowerPoint** (Custom background and UI layer design)
+- **Python** (for insight generation)
 - **Git & GitHub** (Version Control & Portfolio Hosting)
   
 ---
@@ -140,31 +139,37 @@ By utilizing this dashboard, logistics teams can:
 
 ---
 
-## ❓ Research Questions
-
-### 1️⃣ Which hubs are the most efficient?
-Facilities like San Antonio and Fort Worth lead in on-time delivery percentages, while larger hubs like Houston show capacity strains.
-
-### 2️⃣ What is the health of our fleet?
-Tracking the percentage of vehicles in maintenance (e.g., ~26% in selected periods) allows for proactive fleet scaling and maintenance scheduling.
-
-### 3️⃣ Which vehicles do the heavy lifting?
-The Freightliner M2 consistently handles the highest breakdown of total orders and overall volume.
-
-### 4️⃣ Are experienced drivers performing better?
-Scatter plot analysis visualizes the correlation between years of experience and 5-star performance ratings, highlighting training opportunities.
-
----
-
 ## 📊 Key Insights
 
-✅ **Hub Capacity vs. Efficiency:** Houston Hub processes a massive volume of orders but has a lower On-Time Delivery rate (~79.7%) compared to the San Antonio Hub (~82.8%), indicating a need for load redistribution or routing optimization.   
+✅ **Performance Ratings Are Statistically Worthless**   
+★5-rated drivers have a higher delay rate than ★1-rated drivers. Your internal evaluation system has zero correlation with what actually matters. Any routing or bonus decisions built on it are misallocating reward and volume.
 
-✅ **Fleet Utilization:** The Freightliner M2 handles the absolute majority of orders (153 breakdown), far outpacing other models. However, nearly 26.6% of the fleet can be tied up in maintenance in given months, risking capacity crunches.   
+✅ **Experience Makes Drivers Worse, Not Better**   
+0–2 year drivers outperform 6–8 year veterans by 2.4 percentage points. This is the complacency paradox — veteran drivers are either taking shortcuts, or they've been assigned harder routes. Either way, tenure ≠ performance.
 
-✅ **Driver Delay Discrepancies:** A handful of drivers (e.g., John Moore, Daniel Davis) show delayed delivery rates exceeding 40%. Targeted route re-evaluation for these specific drivers could instantly boost overall CSAT.   
+✅ **Delay Predicts Satisfaction With 100% Accuracy**   
+Every single 1-star score came from a delayed order. Every 5-star score had zero delays. CSAT is not a multi-dimensional metric here — it has exactly one driver. Fix delays, and you fix everything.
 
-✅ **Consistent Service Levels:** The overall CSAT hovers around a healthy 85%, tightly correlated with the ~80% On-Time Delivery rate, proving that speed and predictability are the primary drivers of customer satisfaction.
+✅ **The Freightliner M2 Is the Fleet's Weakest Link**   
+At 17 average breakdowns per vehicle (vs 10.2 for the Mercedes Sprinter), the M2 is a financially indefensible asset. Retire it. Don't repair it.
+
+✅ **Fleet Age Is a 3× Breakdown Multiplier**   
+Vehicles over 6 years old average 20.5 breakdowns vs 6.9 for vehicles under 2 years. The fleet is aging into a compounding crisis — 18 vehicles are in the 4–6 year high-risk band and aging up.
+
+✅ **May–June 2024 Revealed a Worsening Seasonal Pattern**   
+The network hit 23.2% delays in June 2024 — up from 18.6% in February. Year-over-year, Q2 2024 was 10% worse than Q2 2023. The underlying deterioration is accelerating, not stable.
+
+✅ **Faster Hub Processing Causes More Delays**   
+The fastest-processing hubs have the highest delay rates. Speed at the hub creates downstream sorting errors and misroutes. The operation is optimizing the wrong metric at the hub level.
+
+✅ **The 35.8-Hour Average Hides a Bimodal Crisis**   
+Deliveries cluster into two groups: fast (6–24 hrs) and slow (24–72 hrs). P99 is 114 hours — nearly 5 days. A single SLA is being applied to what are functionally two very different service products.
+
+✅ **High-Volume Drivers Perform Better Than Low-Volume Ones**   
+The most-loaded drivers have lower delay rates. Volume isn't the problem. Skill is. Stop protecting underperformers by redistributing their load — concentrate volume on your top performers.
+
+✅ **Dallas Fails Across Every Single Delay Category**    
+Controlling for volume, Dallas leads or ties for the most delays in 9 of 10 failure categories. This isn't a volume problem — it's a broad-spectrum operational breakdown requiring a full intervention, not a targeted fix.
 
 ---
 
@@ -183,9 +188,20 @@ git clone [https://github.com/aman-theanalyst/SwiftRoute-Logistic-Dashboard.git]
 
 ## 💡 Final Recommendations
 
-- **Balance the Load:** Reroute some overflow orders from the Houston Hub to nearby facilities to improve the region's overall on-time delivery rate.
-- **Proactive Fleet Maintenance:** With over a quarter of the fleet occasionally in maintenance, conduct preventative checks on the heavily utilized Freightliner M2s to prevent unexpected breakdowns.
-- **Targeted Driver Support:** Implement a coaching or routing-assistance program for the bottom 10% of drivers contributing to the highest delayed delivery rates. 
+- **Institute a Total Fleet Lifecycle Management Programme (Critical)**    
+The fleet is in a self-compounding reliability crisis. 26.7% offline — nearly 3× the industry standard of 8–10%. Retire the Freightliner M2 immediately (17.0 avg breakdowns vs 10.2 for Mercedes Sprinter). Establish a hard lifecycle policy: preventive service at Year 4, replacement evaluation at Year 5. Projected impact: −2.0 to −2.5pp delay rate.
+
+- **Rebuild the Driver Performance Architecture from the Ground Up (Critical)**    
+The performance rating system is statistically invalid (r ≈ 0.01). It must be replaced with an outcome-based framework — delay rate, delivery time, and CSAT as the three primary scored dimensions. Implement formal performance tiers, a 60-day coaching programme for the bottom decile, and scale the contract driver model from 2 to 8–10 drivers. Projected impact: 500–800 fewer delayed orders per year.
+
+- **Redesign the Hub Network Around an El Paso Benchmark Model (High Priority)**
+The fastest-processing hubs produce the highest delay rates (22.3% vs 20.5%) — the operation is optimising the wrong metric. Dallas is a single-point-of-network failure at 29.4× volume-to-capacity. Codify El Paso's practices as the network standard, deploy them at Austin, and model Dallas risk redistribution across Houston and Fort Worth. Projected impact: −1.5 to −2.0pp delay rate.
+
+- **Reframe the Commercial Model Around Tiered SLA and CSAT-as-Revenue (Strategic)**    
+The business is selling a bimodal service product (32.9% of orders deliver in 6–24h, 50.4% in 24–72h) under a single undifferentiated SLA. Introduce Express (≤24h) and Standard (≤48h) tiers with differentiated pricing. Build an LTV-based churn model around the 3,663 at-risk customers. Add P99 exception escalation (any order past 48h triggers proactive outreach). Projected impact: dual-sided revenue and retention uplift.
+
+- **Build a Continuous Operations Intelligence System (Structural / Multiplier)**
+Without this, all gains from Recs 01–04 will revert within 18 months — because they already have. The YoY deterioration (Q2 2024 was 10% worse than Q2 2023) is proof. Deploy a real-time ops dashboard, a 12-week seasonal capacity planning cycle, a delay incident classification protocol, and a monthly executive governance cadence. This is the compounding multiplier on every other investment.   
 
 ---
 
