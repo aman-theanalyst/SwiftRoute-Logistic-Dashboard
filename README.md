@@ -200,7 +200,7 @@ The fastest-processing hubs produce the highest delay rates (22.3% vs 20.5%) —
 - **Reframe the Commercial Model Around Tiered SLA and CSAT-as-Revenue (Strategic)**    
 The business is selling a bimodal service product (32.9% of orders deliver in 6–24h, 50.4% in 24–72h) under a single undifferentiated SLA. Introduce Express (≤24h) and Standard (≤48h) tiers with differentiated pricing. Build an LTV-based churn model around the 3,663 at-risk customers. Add P99 exception escalation (any order past 48h triggers proactive outreach). Projected impact: dual-sided revenue and retention uplift.
 
-- **Build a Continuous Operations Intelligence System (Structural / Multiplier)**
+- **Build a Continuous Operations Intelligence System (Structural / Multiplier)**    
 Without this, all gains from Recs 01–04 will revert within 18 months — because they already have. The YoY deterioration (Q2 2024 was 10% worse than Q2 2023) is proof. Deploy a real-time ops dashboard, a 12-week seasonal capacity planning cycle, a delay incident classification protocol, and a monthly executive governance cadence. This is the compounding multiplier on every other investment.   
 
 ---
